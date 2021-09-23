@@ -19,6 +19,11 @@ jobs:
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
+    - name: Scan md file to publish
+      run: |
+        rm -rf _notes/
+        python publish.py
+        python publish_clear_front.py
 
       # Use GitHub Deploy Action to build and deploy to Github
     - uses: jeffreytse/jekyll-deploy-action@v0.3.0
