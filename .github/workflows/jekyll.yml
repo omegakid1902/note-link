@@ -22,6 +22,8 @@ jobs:
     - name: Scan md file to publish
       run: |
         rm -rf _notes/
+        pip install python-frontmatter
+        pip install pip-tools
         python publish.py
         python publish_clear_front.py
 
